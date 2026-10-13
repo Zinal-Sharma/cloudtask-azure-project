@@ -13,7 +13,7 @@ CloudTask bridges backend software engineering and cloud operations. The project
 ## 2. Architecture & Request Flow
 
 
-<img width="640" height="351" alt="architecture" src="https://github.com/user-attachments/assets/a58a896b-dc5e-4f55-921e-e3cb6c9e03be" />
+<img width="640" height="351" alt="architecture" src="https://github.com/user-attachments/assets/9f1b4680-16a1-45ff-b2aa-da873852133b" />
 
 
 

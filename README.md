@@ -129,7 +129,19 @@ Screenshots validating the CloudTask Azure deployment, application functionality
 
 * **19-azure-advisor.png** — Shows Azure Advisor recommendations for cost optimization, security, reliability, performance, and operational excellence.
 
-* **The sampledataapplication/** folder contains screenshots of JSON responses returned by the deployed CloudTask REST API for Users, Projects, Tasks, and Comments. These examples demonstrate how the API retrieves and returns application data stored in Azure SQL Database, including user details, project information, task descriptions, statuses, assignments, due dates, and task-related comments.
+* **The screenshots/sampledataapplication/** folder contains screenshots of JSON responses returned by the deployed CloudTask REST API for Users, Projects, Tasks, and Comments. These examples demonstrate how the API retrieves and returns application data stored in Azure SQL Database, including user details, project information, task descriptions, statuses, assignments, due dates, and task-related comments.
 
 The screenshots provide evidence of the API's data retrieval functionality and illustrate the response structure returned by the implemented endpoints.
+
+* **Repository Structure**
+
+The repository is organized to separate the backend application, Azure Functions prototype, database scripts, documentation, and sample API responses.
+
+* **app/** — Contains the Python Flask REST API, including application routes, database connectivity, Azure Key Vault integration, Blob Storage uploads, Queue Storage messaging, and the required dependencies.
+
+* **docs/** — Contains the Azure architecture diagram (architecture.png) illustrating the application's cloud architecture.
+
+* **functions/** — Contains the Azure Functions-related Python code and dependencies. The Functions code was developed locally and was not deployed to Azure.
+
+* **sql/** — Contains schema.sql for the database schema and sample-data.sql for sample database records.
 

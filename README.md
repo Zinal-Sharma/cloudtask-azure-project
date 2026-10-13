@@ -12,7 +12,9 @@ CloudTask bridges backend software engineering and cloud operations. The project
 
 ## 2. Architecture & Request Flow
 
+
 <img width="640" height="351" alt="architecture" src="https://github.com/user-attachments/assets/a58a896b-dc5e-4f55-921e-e3cb6c9e03be" />
+
 
 
 1. **Client Ingress:** Web clients communicate over HTTPS (Port 443).

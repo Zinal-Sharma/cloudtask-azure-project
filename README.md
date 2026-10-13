@@ -1,6 +1,6 @@
 # CloudTask — Azure Cloud Architecture & Web API
 
-A practical Azure cloud deployment demonstrating multi-tier application hosting, managed relational data, secrets retrieval via Managed Identity, asynchronous queue messaging, monitoring with alert rules, and resource governance. Designed as a portfolio implementation aligned with Microsoft Azure Fundamentals (AZ-900).
+A practical Azure cloud deployment demonstrating multi-tier application hosting, managed relational data, secrets retrieval via Managed Identity, asynchronous queue messaging, monitoring with alert rules, and resource governance.
 
 ---
 
@@ -12,7 +12,7 @@ CloudTask bridges backend software engineering and cloud operations. The project
 
 ## 2. Architecture & Request Flow
 
-![CloudTask Azure Architecture](docs/architecture.png)[cite: 1]
+![CloudTask Azure Architecture](docs/architecture.png)
 
 1. **Client Ingress:** Web clients communicate over HTTPS (Port 443).
 2. **Compute Layer:** **Azure App Service (`cloudtask-api`)** runs the Python Flask REST API.
@@ -20,10 +20,10 @@ CloudTask bridges backend software engineering and cloud operations. The project
 4. **Data Layer:**
    * **Azure SQL Database (`CloudTaskDB`):** Manages relational application state over a secure SQL connection.
    * **Azure Storage Account:**
-     * **Private Blob Storage (`task-attachments`):** Stores file attachments via blob storage operations[cite: 1].
-     * **Storage Queue (`task-processing`):** Decouples asynchronous operations via queue messaging[cite: 1].
-5. **Observability:** Telemetry and execution logs stream directly to **Azure Monitor / Application Insights**[cite: 1].
-6. **Background Worker Scope:** Background queue processing was developed and validated locally; Azure deployment of Azure Functions is planned for a future phase[cite: 1].
+     * **Private Blob Storage (`task-attachments`):** Stores file attachments via blob storage operations.
+     * **Storage Queue (`task-processing`):** Decouples asynchronous operations via queue messaging.
+5. **Monitoring & Operations:** Telemetry and execution logs stream directly to **Azure Monitor / Application Insights**.
+6. **Background Worker Scope:** Background queue processing was developed and validated locally; Azure deployment of Azure Functions is planned for a future phase.
 
 ---
 
@@ -31,27 +31,38 @@ CloudTask bridges backend software engineering and cloud operations. The project
 
 | Service / Technology | Resource / Component Name | Role in Solution |
 | :--- | :--- | :--- |
-| **Compute** | Azure App Service (`cloudtask-api`)[cite: 1] | Hosts the live Python Flask REST API runtime[cite: 1]. |
-| **Relational Database** | Azure SQL Database (`CloudTaskDB`)[cite: 1] | Stores relational task records via managed SQL connection[cite: 1]. |
-| **Object Storage** | Private Blob Storage (`task-attachments`)[cite: 1] | Stores task file attachments securely[cite: 1]. |
-| **Message Queue** | Storage Queue (`task-processing`)[cite: 1] | Decouples task messaging workflows[cite: 1]. |
-| **Secrets Management** | Azure Key Vault[cite: 1] | Centralizes connection strings and runtime credentials[cite: 1]. |
-| **Identity & Access** | Azure Managed Identity & Azure RBAC[cite: 1] | Enforces zero-credential authentication and least-privilege roles[cite: 1]. |
-| **Monitoring** | Azure Monitor & Application Insights[cite: 1] | Live telemetry tracking and active operational alerts[cite: 1]. |
-| **Governance** | Azure Policy, Resource Locks, Resource Tags[cite: 1] | Enforces tag compliance and accidental deletion locks[cite: 1]. |
-| **Cost & Advisory** | Azure Cost Management, Budgets, Azure Advisor[cite: 1] | Budget threshold alerting and operational recommendations[cite: 1]. |
+| **Compute** | Azure App Service (`cloudtask-api`) | Hosts the live Python Flask REST API runtime. |
+| **Relational Database** | Azure SQL Database (`CloudTaskDB`) | Stores relational task records via managed SQL connection. |
+| **Object Storage** | Private Blob Storage (`task-attachments`) | Stores task file attachments securely. |
+| **Message Queue** | Storage Queue (`task-processing`) | Decouples task messaging workflows. |
+| **Secrets Management** | Azure Key Vault | Centralizes connection strings and runtime credentials. |
+| **Identity & Access** | Azure Managed Identity & Azure RBAC | Enforces zero-credential authentication and least-privilege roles. |
+| **Monitoring** | Azure Monitor & Application Insights | Live telemetry tracking and active operational alerts. |
+| **Governance** | Azure Policy, Resource Locks, Resource Tags | Enforces tag compliance and accidental deletion locks. |
+| **Cost & Advisory** | Azure Cost Management, Budgets, Azure Advisor | Budget threshold alerting and operational recommendations. |
 
 ---
 
 ## 4. Application Endpoints
 
-| Method | Endpoint | Description | Verification Status |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/`[cite: 1] | Base index returning application health and runtime status[cite: 1]. | Verified[cite: 1] |
-| `GET` | `/api/health`[cite: 1] | Liveness probe verifying application process availability[cite: 1]. | Verified[cite: 1] |
-| `GET` | `/api/keyvault-test`[cite: 1] | Validates Managed Identity authentication and Key Vault secret access[cite: 1]. | Verified[cite: 1] |
-| `GET` | `/tasks` | Retrieves active task records from Azure SQL Database. | Roadmap / CRUD |
-| `POST` | `/tasks` | Creates task and posts a payload to `task-processing` queue[cite: 1]. | Roadmap / CRUD |
+| Category | Method | Endpoint | Description | Verification Status |
+| :--- | :--- | :--- | :--- | :--- |
+| Health | `GET` | `/` | Confirms that the CloudTask API is running. | Verified |
+| Health | `GET` | `/api/health` | Returns the API health status and application information. | Verified |
+| Users | `GET` | `/api/users` | Retrieves all users from Azure SQL Database. | Verified |
+| Users | `GET` | `/api/users/{user_id}` | Retrieves a specific user by ID. | Verified |
+| Users | `POST` | `/api/users` | Creates a new user using the provided name and email. | Verified |
+| Projects | `GET` | `/api/projects` | Retrieves all projects from Azure SQL Database. | Verified |
+| Projects | `POST` | `/api/projects` | Creates a new project with a name and optional description. | Verified |
+| Tasks | `GET` | `/api/tasks` | Retrieves all tasks and their details. | Verified |
+| Tasks | `GET` | `/api/tasks/{task_id}` | Retrieves a specific task by ID. | Verified |
+| Tasks | `POST` | `/api/tasks` | Creates a task associated with a project. | Verified |
+| Tasks | `PUT` | `/api/tasks/{task_id}` | Updates a task's title, description, status, assignee, and due date. | Verified |
+| Tasks | `DELETE` | `/api/tasks/{task_id}` | Deletes a task by ID. | Verified |
+| Comments | `GET` | `/api/tasks/{task_id}/comments` | Retrieves comments associated with a specific task. | Verified |
+| Comments | `POST` | `/api/tasks/{task_id}/comments` | Adds a comment to a task for a specified user. | Verified |
+| Attachments & Azure Storage | `POST` | `/api/tasks/{task_id}/attachments` | Uploads a task attachment to Azure Blob Storage and sends a processing message to Azure Queue Storage. | Verified |
+| Azure Key Vault | `GET` | `/api/keyvault-test` | Checks Key Vault secret access and returns the secret's length without exposing its value. | Verified |
 
 ---
 

@@ -1,0 +1,3 @@
+azure-functions==2.3.0  #Azure Functions Python SDK — required for function_app.py
+MarkupSafe==3.0.3  #A dependency used by Python web tooling
+Werkzeug==3.1.8  #A web/WGI component commonly used by Flask-related tooling

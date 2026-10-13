@@ -12,7 +12,8 @@ CloudTask bridges backend software engineering and cloud operations. The project
 
 ## 2. Architecture & Request Flow
 
-![CloudTask Azure Architecture](docs/architecture.png)
+<img width="640" height="351" alt="architecture" src="https://github.com/user-attachments/assets/a58a896b-dc5e-4f55-921e-e3cb6c9e03be" />
+
 
 1. **Client Ingress:** Web clients communicate over HTTPS (Port 443).
 2. **Compute Layer:** **Azure App Service (`cloudtask-api`)** runs the Python Flask REST API.

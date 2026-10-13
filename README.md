@@ -133,7 +133,7 @@ Screenshots validating the CloudTask Azure deployment, application functionality
 
 The screenshots provide evidence of the API's data retrieval functionality and illustrate the response structure returned by the implemented endpoints.
 
-* **Repository Structure**
+## Repository Structure
 
 The repository is organized to separate the backend application, Azure Functions prototype, database scripts, documentation, and sample API responses.
 

@@ -68,29 +68,61 @@ CloudTask bridges backend software engineering and cloud operations. The project
 
 ## 5. Security, Monitoring & Governance
 
-* **Zero-Secret Codebase:** App Service retrieves secrets via a system-assigned Managed Identity from Azure Key Vault, preventing credentials in version control[cite: 1].
-* **Access Control:** Azure Role-Based Access Control (RBAC) scopes permissions strictly at the resource group level[cite: 1].
-* **Resource Immutability:** A `CanNotDelete` Resource Lock on `CloudTask-RG` prevents accidental resource deletion during maintenance[cite: 1].
-* **Resource Tagging & Policies:** Standardized tags (`Project: CloudTask`, `Environment: Dev`) are enforced across resources[cite: 1].
-* **Operational Alert Rules:** Azure Monitor Application Insights tracks reliability through configured rules[cite: 1]:
-  * `CloudTask-HTTP5xx-Alert` (triggers on HTTP 5xx server errors)[cite: 1]
-  * `cloudtask-health-test-cloudtask-api-insights` (tracks health endpoint synthetic probe failures)[cite: 1]
-* **Cost Governance:** Budget notifications configured (`Budget - cost exceeded threshold`) to track consumption against spending limits[cite: 1].
+* **Zero-Secret Codebase:** App Service retrieves secrets via a system-assigned Managed Identity from Azure Key Vault, preventing credentials in version control.
+* **Access Control:** Azure Role-Based Access Control (RBAC) scopes permissions strictly at the resource group level.
+* **Resource Immutability:** A `CanNotDelete` Resource Lock on `CloudTask-RG` prevents accidental resource deletion during maintenance.
+* **Resource Tagging & Policies:** Standardized tags (`Project: CloudTask`, `Environment: Dev`) are enforced across resources.
+* **Operational Alert Rules:** Azure Monitor Application Insights tracks reliability through configured rules:
+  * `CloudTask-HTTP5xx-Alert` (triggers on HTTP 5xx server errors).
+  * `cloudtask-health-test-cloudtask-api-insights` (tracks health endpoint synthetic probe failures).
+* **Cost Governance:** Budget notifications configured (`Budget - cost exceeded threshold`) to track consumption against spending limits.
 
 ---
 
 ## 6. Verification Evidence
-Artifacts and logs validating the live deployment are cataloged in screenshots/:
+Screenshots validating the CloudTask Azure deployment, application functionality, monitoring, security, governance, and cost management are cataloged in screenshots/:
 
-01-resource-group-overview.png — Deployed services inside CloudTask-RG showing tag definitions.
+01-resource-group.png — Shows the CloudTask-RG resource group and its deployed Azure resources.
 
-02-api-health-keyvault-response.png — Verified HTTP 200 responses for /api/health and /api/keyvault-test.
+02-app-service.png — Documents the deployed CloudTask API hosted on Azure App Service.
 
-03-sql-database-connection.png — Active CloudTaskDB deployment and SQL query metrics.
+03-health-endpoint.png — Verifies the API health endpoint and confirms that the application responds successfully.
 
-04-storage-blob-queue.png — Created task-attachments blob container and task-processing queue.
+04-database-connectivity.png — Demonstrates connectivity between the CloudTask API and Azure SQL Database.
 
-05-alerts-insights.png — Configured alert rules (CloudTask-HTTP5xx-Alert and health test probes).
+05-storage-blob.png — Shows the Azure Blob Storage configuration used for task attachments.
 
-06-governance-budget.png — Resource locks, policy compliance checks, and budget threshold configuration.
+storage-blob-samplefile.png — Provides evidence of a sample file uploaded to Blob Storage.
+
+06-storage-queue.png — Shows the Azure Queue Storage configuration for task-processing messages.
+
+07-key-vault.png — Documents the Azure Key Vault configuration for securely storing application secrets.
+
+08-managed-identity.png — Demonstrates the App Service managed identity configuration for Azure resource access.
+
+09-RG-rbac.png — Documents role-based access control (RBAC) assignments at the resource group level.
+
+10-KV-rbac.png — Shows Key Vault role assignments controlling access to secrets.
+
+11-policy-compliance.png — Provides evidence of Azure Policy assignment and policy compliance status.
+
+12-policy-tag-compliance.png — Documents compliance checks for the required resource tagging policy.
+
+13-application-insights-overview.png — Shows the Application Insights overview for monitoring application telemetry.
+
+14-application-insights-failures.png — Documents application failure monitoring and troubleshooting information.
+
+15-azure-monitor-metrics.png — Shows Azure Monitor metrics used to observe application and resource performance.
+
+16-azure-monitor-alert-rule.png — Documents the Azure Monitor alert rule configuration.
+
+monitor-HTTP5xx-alert.png — Provides evidence of the HTTP 5xx alert notification or triggered alert.
+
+17-resource-lock.png — Shows the resource lock configuration used to help prevent accidental resource deletion.
+
+18-cost-management-analysis_charts.png — Documents Azure Cost Management analysis charts used to review resource spending.
+
+cost-alert.png — Provides evidence of cost alert configuration for monitoring Azure spending.
+
+19-azure-advisor.png — Shows Azure Advisor recommendations for cost optimization, security, reliability, performance, and operational excellence.
 

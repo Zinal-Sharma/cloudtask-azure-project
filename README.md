@@ -1,4 +1,4 @@
-# CloudTask — Azure Cloud Architecture & Web API
+# CloudTask — Azure Cloud Architecture & REST API
 
 A practical Azure cloud deployment demonstrating multi-tier application hosting, managed relational data, secrets retrieval via Managed Identity, asynchronous queue messaging, monitoring with alert rules, and resource governance.
 

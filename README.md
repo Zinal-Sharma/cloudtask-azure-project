@@ -139,7 +139,7 @@ The repository is organized to separate the backend application, Azure Functions
 
 * **app/** — Contains the Python Flask REST API, including application routes, database connectivity, Azure Key Vault integration, Blob Storage uploads, Queue Storage messaging, and the required dependencies.
 
-* **docs/** — Contains the Azure architecture diagram (architecture.png) illustrating the application's cloud architecture.
+* **docs/** — Contains the Azure architecture diagram (architecture.png) illustrating the application's cloud architecture and the project overview documentation (project-overview.md) explaining the project purpose, architecture, Azure services, security, monitoring, and governance.
 
 * **functions/** — Contains the Azure Functions-related Python code and dependencies. The Functions code was developed locally and was not deployed to Azure.
 
